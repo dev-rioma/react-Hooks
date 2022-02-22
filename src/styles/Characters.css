@@ -1,0 +1,55 @@
+
+
+.Characters {
+    display: flex;
+    flex-flow: row wrap;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    column-gap: 60px;
+    row-gap: 50px;
+    padding-top: 30px;
+}
+.image_container{
+    display: flex;
+    flex-flow: column;
+    border: solid 4px green;
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+.card_info{
+    background-color: grey;
+}
+
+.card_info h2{
+    font-family: system-ui;
+    margin: 12px;
+    color: greenyellow;
+}
+
+.card_info h4 {
+    margin: 5px;
+    font-size: 12px;
+    font-family: system-ui;
+    color: white;
+
+}
+
+.Dark_ligth {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: greenyellow;
+    border: none;
+}
+
+
+
+
+
+
+
