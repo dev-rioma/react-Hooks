@@ -1,9 +1,33 @@
-@import 'vars';
-
+:root {
+  --background: white;
+  --text-primary: black;
+  --text-secondary: royalblue;
+  --accent: purple;
+}
+[data-theme='dark'] {
+  --background: black;
+  --text-primary: white;
+  --text-secondary: grey;
+  --accent: darkred;
+}
 .App {
   text-align: center;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
 }
 
-
+.App {
+  color: var(--text-primary);
+  background-color: var(--background);
+  transition: all .5s;
+  
+  
+}
+button {
+  color: var(--text-primary);
+  background-color: var(--background);
+  border: 2px var(--text-primary) solid;
+  transition: all .5s;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  
+}
