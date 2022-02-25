@@ -23,9 +23,11 @@ function App() {
   return (
     <div className="App" data-theme={theme}>
       <Header />
-      <button onClick={switchTheme}>
-      {theme ==='ligth' ? Sun : Moon} 
-      </button>
+      <div className='buttonBox'>
+        <button onClick={switchTheme}>
+          {theme ==='ligth' ? Sun : Moon} 
+        </button>
+      </div>
       <Characters />
       <h1>Hola Mundo</h1>
     </div>
