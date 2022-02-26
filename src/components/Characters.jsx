@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useReducer, useMemo } from 'react';
+import React, { useState, useReducer, useMemo, useRef, useCallback } from 'react';
 import '../styles/Characters.css';
 import { StarIcon } from '@heroicons/react/solid';
-
+import Search from './Search';
+import useCharacters from '../hooks/useCharacters';
 const Star = <StarIcon className='h-5 w-5 text-blue-500' viewBox='0 0 20 20' fill='yellow' />
 
 const initialState = {
     favorites: []
 }
+
+const API = 'https://rickandmortyapi.com/api/character/';
 
 const favoriteReducer = (state, action) => {
     switch (action.type){
@@ -25,23 +28,23 @@ const favoriteReducer = (state, action) => {
 }
 
 const Characters = () => {
-    const [characters, setCharacters] = useState([]);
     const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
     const [search, setSearch] = useState('');
+    const searchInput = useRef(null);
 
-    useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character/')
-        .then(response => response.json())
-        .then(data => setCharacters(data.results));
-    }, []);
+    const characters = useCharacters(API);
 
     const handleClick = favorite => {
         dispatch({ type: 'ADD_TO_FAVORITE', payload: favorite })
     }
 
-    const handleSearch = (event) => {
-        setSearch(event.target.value)
-    }
+    // const handleSearch = () => {
+    //     setSearch(searchInput.current.value);
+    // }
+
+    const handleSearch = useCallback(() => {
+        setSearch(searchInput.current.value);
+    }, [])
 
     // const filteredUsers = characters.filter((user) => {
     //     return user.name.toLowerCase().includes(search.toLowerCase());
@@ -63,9 +66,7 @@ const Characters = () => {
                 </span>
             ))}
 
-            <div className="Search">
-                <input type="text" value={search} onChange={handleSearch}/>
-            </div>
+            <Search search={search} searchInput={searchInput} handleSearch={handleSearch} />
 
             <div className="Characters">
                 {filteredUsers.map(character => (
